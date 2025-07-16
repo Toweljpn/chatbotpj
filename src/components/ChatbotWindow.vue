@@ -97,29 +97,9 @@ const sendMessage = async () => {
 
 onMounted(() => {
   if (chatWindow.value) {
-    // 初期位置を画面の右下あたりに設定する代わりに、画面内に確実に表示される位置に設定
-    // 例: 画面の右下から20px、下から20pxの位置
-    const initialRight = 20;
-    const initialBottom = 20;
-
-    // ウィンドウの幅と高さを取得 (paddingなどを含む実際の表示サイズ)
-    const windowWidth = chatWindow.value.offsetWidth;
-    const windowHeight = chatWindow.value.offsetHeight;
-
-    // 画面の幅と高さを取得
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    // 計算されたleftとtopの位置
-    let calculatedLeft = viewportWidth - windowWidth - initialRight;
-    let calculatedTop = viewportHeight - windowHeight - initialBottom;
-
-    // 負の値にならないように調整 (画面左上端に固定)
-    if (calculatedLeft < 0) calculatedLeft = 0;
-    if (calculatedTop < 0) calculatedTop = 0;
-
-    chatWindow.value.style.left = `${calculatedLeft}px`;
-    chatWindow.value.style.top = `${calculatedTop}px`;
+    // 初期位置設定を一時的に無効化
+    // chatWindow.value.style.left = `50px`; // 例: 左から50pxに固定
+    // chatWindow.value.style.top = `50px`;  // 例: 上から50pxに固定
   }
 });
 </script>

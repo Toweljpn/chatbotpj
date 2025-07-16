@@ -241,24 +241,28 @@ onMounted(() => {
 }
 
 .chatbot-toggle-button {
-  background-color: #007bff;
+  background: linear-gradient(45deg, #007bff, #0056b3); /* グラデーション背景 */
   color: white;
   border: none;
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  font-size: 14px;
+  font-size: 16px; /* フォントサイズを少し大きく */
+  font-weight: bold; /* フォントを太く */
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* 影を強調 */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   line-height: 1.2;
+  transition: all 0.3s ease; /* ホバー時のトランジション */
 }
 
 .chatbot-toggle-button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(45deg, #0056b3, #003f7f); /* ホバー時のグラデーション */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* ホバー時の影をさらに強調 */
+  transform: translateY(-2px); /* 少し上に移動するアニメーション */
 }
 
 .floating-chatbot {

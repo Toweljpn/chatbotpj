@@ -97,9 +97,10 @@ const sendMessage = async () => {
 
 onMounted(() => {
   if (chatWindow.value) {
-    // 初期位置設定を一時的に無効化
-    // chatWindow.value.style.left = `50px`; // 例: 左から50pxに固定
-    // chatWindow.value.style.top = `50px`;  // 例: 上から50pxに固定
+    console.log('Chat window element:', chatWindow.value);
+    // 初期位置を画面の左上から50pxに固定
+    chatWindow.value.style.left = `50px`;
+    chatWindow.value.style.top = `50px`;
   }
 });
 </script>

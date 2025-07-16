@@ -51,9 +51,9 @@ const doDrag = (e) => {
   if (newX + windowWidth > viewportWidth) newX = viewportWidth - windowWidth;
   if (newY + windowHeight > viewportHeight) newY = viewportHeight - windowHeight;
 
-
   chatWindow.value.style.left = `${newX}px`;
   chatWindow.value.style.top = `${newY}px`;
+  console.log(`Dragging: newX=${newX}, newY=${newY}, style.left=${chatWindow.value.style.left}, style.top=${chatWindow.value.style.top}`);
 };
 
 const stopDrag = () => {

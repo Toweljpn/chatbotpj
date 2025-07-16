@@ -16,7 +16,6 @@ const initialWindowX = ref(0); // ウィンドウの初期left値
 const initialWindowY = ref(0); // ウィンドウの初期top値
 
 const startDrag = (e) => {
-  console.log('startDrag called');
   isDragging.value = true;
   initialMouseX.value = e.clientX;
   initialMouseY.value = e.clientY;

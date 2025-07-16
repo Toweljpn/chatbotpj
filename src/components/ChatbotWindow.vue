@@ -152,9 +152,6 @@ onMounted(() => {
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid #eee;
-  background-color: rgba(255, 0, 0, 0.5); /* 一時的に半透明の赤色に */
-  height: 50px; /* 一時的に高さを設定 */
-  width: 100%; /* 幅を100%に設定 */
 }
 
 .chat-header h1 {

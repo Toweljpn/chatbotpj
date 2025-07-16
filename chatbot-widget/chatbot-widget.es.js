@@ -1,4 +1,4 @@
-import { ref as s, onMounted as E, createElementBlock as c, openBlock as v, createElementVNode as d, createCommentVNode as I, Fragment as $, renderList as L, normalizeClass as M, toDisplayString as X, withDirectives as Y, withKeys as A, vModelText as N, defineComponent as S } from "vue";
+import { ref as s, onMounted as D, createElementBlock as c, openBlock as v, createElementVNode as d, createCommentVNode as I, Fragment as $, renderList as L, normalizeClass as M, toDisplayString as X, withDirectives as Y, withKeys as A, vModelText as N, defineComponent as S } from "vue";
 const j = (p, r) => {
   const a = p.__vccOpts || p;
   for (const [i, t] of r)
@@ -10,18 +10,18 @@ const j = (p, r) => {
 }, O = { class: "input-area" }, P = ["disabled"], T = ["disabled"], V = "https://black-mud-382d.corsicajp.workers.dev/", B = {
   __name: "ChatbotWindow",
   setup(p) {
-    const r = s([]), a = s(""), i = s(!1), t = s(null), w = s(!1), f = s(0), h = s(0), g = s(0), m = s(0), D = (n) => {
-      console.log("startDrag called"), w.value = !0, f.value = n.clientX, h.value = n.clientY;
+    const r = s([]), a = s(""), i = s(!1), t = s(null), w = s(!1), f = s(0), h = s(0), m = s(0), y = s(0), E = (n) => {
+      w.value = !0, f.value = n.clientX, h.value = n.clientY;
       const e = window.getComputedStyle(t.value);
-      g.value = parseFloat(e.left), m.value = parseFloat(e.top), window.addEventListener("mousemove", y), window.addEventListener("mouseup", _);
-    }, y = (n) => {
+      m.value = parseFloat(e.left), y.value = parseFloat(e.top), window.addEventListener("mousemove", g), window.addEventListener("mouseup", _);
+    }, g = (n) => {
       if (!w.value) return;
       const e = n.clientX - f.value, l = n.clientY - h.value;
-      let o = g.value + e, u = m.value + l;
+      let o = m.value + e, u = y.value + l;
       const b = t.value.offsetWidth, k = t.value.offsetHeight, W = window.innerWidth, C = window.innerHeight;
       o < 0 && (o = 0), u < 0 && (u = 0), o + b > W && (o = W - b), u + k > C && (u = C - k), t.value.style.left = `${o}px`, t.value.style.top = `${u}px`, console.log(`Dragging: newX=${o}, newY=${u}, style.left=${t.value.style.left}, style.top=${t.value.style.top}`);
     }, _ = () => {
-      w.value = !1, window.removeEventListener("mousemove", y), window.removeEventListener("mouseup", _);
+      w.value = !1, window.removeEventListener("mousemove", g), window.removeEventListener("mouseup", _);
     }, x = async () => {
       if (a.value.trim() === "") return;
       const n = a.value;
@@ -46,7 +46,7 @@ const j = (p, r) => {
         i.value = !1;
       }
     };
-    return E(() => {
+    return D(() => {
       t.value && (console.log("Chat window element:", t.value), t.value.style.left = "50px", t.value.style.top = "50px");
     }), (n, e) => (v(), c("div", {
       class: "chat-container",
@@ -55,7 +55,7 @@ const j = (p, r) => {
     }, [
       d("div", {
         class: "chat-header",
-        onMousedown: D
+        onMousedown: E
       }, e[1] || (e[1] = [
         d("h1", null, "AI Chatbot", -1)
       ]), 32),
@@ -82,7 +82,7 @@ const j = (p, r) => {
       ])
     ], 512));
   }
-}, K = /* @__PURE__ */ j(B, [["__scopeId", "data-v-923092bd"]]), q = S(K);
+}, K = /* @__PURE__ */ j(B, [["__scopeId", "data-v-fda0551a"]]), q = S(K);
 export {
   q as default
 };

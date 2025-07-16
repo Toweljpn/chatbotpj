@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build-chatbot": "vite build"
+    "build-chatbot": "vite build -c vite.chatbot.config.js",
+    "deploy": "npm run build && npm run build-chatbot"
   },
   "dependencies": {
     "vue": "^3.5.17"

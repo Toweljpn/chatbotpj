@@ -134,7 +134,6 @@ onMounted(() => {
 /* 本番環境に埋め込むチャットボットウィンドウのスタイルの開始 */
 .chat-container {
   position: fixed; /* 自由に動かすためにfixedに変更 */
-  /* 初期位置はJavaScriptで設定するため、ここではleft/top/right/bottomを削除 */
   max-width: 350px; /* App.vueのfloating-chatbotのwidthに合わせる */
   max-height: 500px; /* App.vueのfloating-chatbotのmax-heightに合わせる */
   padding: 20px;
@@ -237,6 +236,45 @@ onMounted(() => {
 
 .input-area button:hover {
   background-color: #218838;
+}
+
+/* フローティングUIのスタイル */
+.chatbot-embed-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.chatbot-toggle-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.chatbot-toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.floating-chatbot {
+  position: absolute;
+  /* bottomとrightはChatbotWindow側でJavaScriptで制御するため削除 */
+  width: 350px; /* チャットウィンドウの幅を調整 */
+  max-height: 500px; /* チャットウィンドウの最大高さを調整 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
 }
 /* 本番環境に埋め込むチャットボットウィンドウのスタイルの終了 */
 </style>

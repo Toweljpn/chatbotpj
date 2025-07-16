@@ -187,7 +187,12 @@
 
       // ChatbotWindow コンポーネントをグローバルに登録
       console.log('ChatbotWidget:', ChatbotWidget);
-      app.component('chatbot-window', ChatbotWidget);
+      // ChatbotWindow コンポーネントをグローバルに登録
+      // app.component('chatbot-window', ChatbotWidget);
+
+      // ChatbotWindow をカスタム要素として定義
+      const ChatbotCustomElement = Vue.defineCustomElement(ChatbotWidget);
+      customElements.define('chatbot-window', ChatbotCustomElement);
 
       app.mount('#chatbot-widget-container');
     </script>

@@ -1,88 +1,88 @@
-import { ref as s, onMounted as D, createElementBlock as c, openBlock as v, createElementVNode as d, createCommentVNode as I, Fragment as $, renderList as L, normalizeClass as M, toDisplayString as X, withDirectives as Y, withKeys as A, vModelText as N, defineComponent as S } from "vue";
-const j = (p, r) => {
+import { ref as s, onMounted as D, createElementBlock as c, openBlock as v, createElementVNode as u, createCommentVNode as I, Fragment as L, renderList as M, normalizeClass as A, toDisplayString as N, withDirectives as S, withKeys as X, vModelText as Y, defineComponent as j } from "vue";
+const F = (p, r) => {
   const a = p.__vccOpts || p;
-  for (const [i, t] of r)
-    a[i] = t;
+  for (const [l, t] of r)
+    a[l] = t;
   return a;
-}, F = { class: "message-list" }, H = {
+}, H = { class: "message-list" }, O = {
   key: 0,
   class: "loading-message"
-}, O = { class: "input-area" }, P = ["disabled"], T = ["disabled"], V = "https://black-mud-382d.corsicajp.workers.dev/", B = {
+}, P = { class: "input-area" }, T = ["disabled"], $ = ["disabled"], V = "https://black-mud-382d.corsicajp.workers.dev/", B = {
   __name: "ChatbotWindow",
   setup(p) {
-    const r = s([]), a = s(""), i = s(!1), t = s(null), w = s(!1), f = s(0), h = s(0), m = s(0), y = s(0), E = (n) => {
-      w.value = !0, f.value = n.clientX, h.value = n.clientY;
+    const r = s([]), a = s(""), l = s(!1), t = s(null), w = s(!1), h = s(0), f = s(0), m = s(0), y = s(0), C = (o) => {
+      w.value = !0, h.value = o.clientX, f.value = o.clientY;
       const e = window.getComputedStyle(t.value);
       m.value = parseFloat(e.left), y.value = parseFloat(e.top), window.addEventListener("mousemove", g), window.addEventListener("mouseup", _);
-    }, g = (n) => {
+    }, g = (o) => {
       if (!w.value) return;
-      const e = n.clientX - f.value, l = n.clientY - h.value;
-      let o = m.value + e, u = y.value + l;
-      const b = t.value.offsetWidth, k = t.value.offsetHeight, W = window.innerWidth, C = window.innerHeight;
-      o < 0 && (o = 0), u < 0 && (u = 0), o + b > W && (o = W - b), u + k > C && (u = C - k), t.value.style.left = `${o}px`, t.value.style.top = `${u}px`, console.log(`Dragging: newX=${o}, newY=${u}, style.left=${t.value.style.left}, style.top=${t.value.style.top}`);
+      const e = o.clientX - h.value, i = o.clientY - f.value;
+      let n = m.value + e, d = y.value + i;
+      const x = t.value.offsetWidth, k = t.value.offsetHeight, W = window.innerWidth, E = window.innerHeight;
+      n < 0 && (n = 0), d < 0 && (d = 0), n + x > W && (n = W - x), d + k > E && (d = E - k), t.value.style.left = `${n}px`, t.value.style.top = `${d}px`;
     }, _ = () => {
       w.value = !1, window.removeEventListener("mousemove", g), window.removeEventListener("mouseup", _);
-    }, x = async () => {
+    }, b = async () => {
       if (a.value.trim() === "") return;
-      const n = a.value;
-      r.value.push({ type: "user", text: n }), a.value = "", i.value = !0;
+      const o = a.value;
+      r.value.push({ type: "user", text: o }), a.value = "", l.value = !0;
       try {
         const e = await fetch(V, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ question: n })
+          body: JSON.stringify({ question: o })
         });
         if (!e.ok) {
-          const o = await e.json();
-          throw new Error(`API Error: ${e.status} - ${o.error || "Unknown error"}`);
+          const n = await e.json();
+          throw new Error(`API Error: ${e.status} - ${n.error || "Unknown error"}`);
         }
-        const l = await e.json();
-        r.value.push({ type: "ai", text: l.answer });
+        const i = await e.json();
+        r.value.push({ type: "ai", text: i.answer });
       } catch (e) {
         console.error("Failed to fetch AI answer:", e), r.value.push({ type: "ai", text: "エラーが発生しました: " + e.message });
       } finally {
-        i.value = !1;
+        l.value = !1;
       }
     };
     return D(() => {
-      t.value && (console.log("Chat window element:", t.value), t.value.style.left = "50px", t.value.style.top = "50px");
-    }), (n, e) => (v(), c("div", {
+      t.value && (t.value.style.left = "50px", t.value.style.top = "50px");
+    }), (o, e) => (v(), c("div", {
       class: "chat-container",
       ref_key: "chatWindow",
       ref: t
     }, [
-      d("div", {
+      u("div", {
         class: "chat-header",
-        onMousedown: E
+        onMousedown: C
       }, e[1] || (e[1] = [
-        d("h1", null, "AI Chatbot", -1)
+        u("h1", null, "AI Chatbot", -1)
       ]), 32),
-      d("div", F, [
-        (v(!0), c($, null, L(r.value, (l, o) => (v(), c("div", {
-          key: o,
-          class: M(["message", l.type])
-        }, X(l.text), 3))), 128)),
-        i.value ? (v(), c("div", H, "AIが思考中...")) : I("", !0)
+      u("div", H, [
+        (v(!0), c(L, null, M(r.value, (i, n) => (v(), c("div", {
+          key: n,
+          class: A(["message", i.type])
+        }, N(i.text), 3))), 128)),
+        l.value ? (v(), c("div", O, "AIが思考中...")) : I("", !0)
       ]),
-      d("div", O, [
-        Y(d("input", {
-          "onUpdate:modelValue": e[0] || (e[0] = (l) => a.value = l),
-          onKeyup: A(x, ["enter"]),
+      u("div", P, [
+        S(u("input", {
+          "onUpdate:modelValue": e[0] || (e[0] = (i) => a.value = i),
+          onKeyup: X(b, ["enter"]),
           placeholder: "質問を入力してください...",
-          disabled: i.value
-        }, null, 40, P), [
-          [N, a.value]
+          disabled: l.value
+        }, null, 40, T), [
+          [Y, a.value]
         ]),
-        d("button", {
-          onClick: x,
-          disabled: i.value
-        }, "送信", 8, T)
+        u("button", {
+          onClick: b,
+          disabled: l.value
+        }, "送信", 8, $)
       ])
     ], 512));
   }
-}, K = /* @__PURE__ */ j(B, [["__scopeId", "data-v-fda0551a"]]), q = S(K);
+}, K = /* @__PURE__ */ F(B, [["__scopeId", "data-v-aabab572"]]), q = j(K);
 export {
   q as default
 };

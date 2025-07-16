@@ -53,7 +53,6 @@ const doDrag = (e) => {
 
   chatWindow.value.style.left = `${newX}px`;
   chatWindow.value.style.top = `${newY}px`;
-  console.log(`Dragging: newX=${newX}, newY=${newY}, style.left=${chatWindow.value.style.left}, style.top=${chatWindow.value.style.top}`);
 };
 
 const stopDrag = () => {
@@ -97,7 +96,6 @@ const sendMessage = async () => {
 
 onMounted(() => {
   if (chatWindow.value) {
-    console.log('Chat window element:', chatWindow.value);
     // 初期位置を画面の左上から50pxに固定
     chatWindow.value.style.left = `50px`;
     chatWindow.value.style.top = `50px`;

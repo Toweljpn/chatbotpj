@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/components/ChatbotWindow.vue'),
+      entry: resolve(__dirname, 'src/chatbot-widget-entry.js'),
       name: 'ChatbotWidget',
       fileName: (format) => `chatbot-widget.${format}.js`,
     },

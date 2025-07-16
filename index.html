@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+    <!-- 本番環境に埋め込むチャットボットのスタイルの開始 -->
+    <style>
+      .loading-message {
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        border-radius: 15px;
+        max-width: 80%;
+        background-color: #f0f0f0;
+        color: #555;
+        text-align: center;
+        align-self: flex-start;
+        margin-right: auto;
+        font-style: italic;
+      }
+
+      .chat-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: sans-serif;
+        background-color: white;
+      }
+
+      .chat-container h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .message-list {
+        border: 1px solid #ddd;
+        height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .message {
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        border-radius: 15px;
+        max-width: 80%;
+        word-wrap: break-word;
+      }
+
+      .message.user {
+        background-color: #007bff;
+        color: white;
+        align-self: flex-end;
+        margin-left: auto;
+        text-align: right;
+      }
+
+      .message.ai {
+        background-color: #e2e3e5;
+        color: #333;
+        align-self: flex-start;
+        text-align: left;
+      }
+
+      .input-area {
+        display: flex;
+        gap: 10px;
+      }
+
+      .input-area input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      .input-area button {
+        padding: 10px 15px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .input-area button:hover {
+        background-color: #218838;
+      }
+
+      /* フローティングUIのスタイル */
+      .chatbot-embed-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .chatbot-toggle-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 14px;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      .chatbot-toggle-button:hover {
+        background-color: #0056b3;
+      }
+
+      .floating-chatbot {
+        position: absolute;
+        bottom: 70px;
+        right: 0;
+        width: 350px;
+        max-height: 500px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+    </style>
+    <!-- 本番環境に埋め込むチャットボットのスタイルの終了 -->
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- 本番環境に埋め込むチャットボットのUIの開始 -->
+    <div id="chatbot-widget-container"></div>
+    <!-- 本番環境に埋め込むチャットボットのUIの終了 -->
+
+    <!-- 本番環境に埋め込むチャットボットのスクリプトの開始 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <!-- ビルドされたチャットボットウィジェットを読み込む -->
+    <script src="./dist/chatbot-widget.umd.js"></script>
+    <script>
+      // Vueアプリケーションの作成とマウント
+      const app = Vue.createApp({
+        data() {
+          return {
+            isChatbotOpen: false
+          };
+        },
+        methods: {
+          toggleChatbot() {
+            this.isChatbotOpen = !this.isChatbotOpen;
+          }
+        },
+        template: `
+          <div class="chatbot-embed-container">
+            <button @click="toggleChatbot" class="chatbot-toggle-button">
+              {{ isChatbotOpen ? 'チャットを閉じる' : 'チャットを開く' }}
+            </button>
+            <chatbot-window v-if="isChatbotOpen" class="floating-chatbot"></chatbot-window>
+          </div>
+        `,
+      });
+
+      // ChatbotWindow コンポーネントをグローバルに登録
+      // ChatbotWidget は vite.config.js で設定した name で、UMDビルドの場合グローバル変数として利用可能になります。
+      // その中のデフォルトエクスポートされたコンポーネントが ChatbotWidget.default としてアクセスできます。
+      app.component('chatbot-window', ChatbotWidget);
+
+      app.mount('#chatbot-widget-container');
+    </script>
+    <!-- 本番環境に埋め込むチャットボットのスクリプトの終了 -->
+  </body>
+</html>

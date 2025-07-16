@@ -172,13 +172,12 @@
         methods: {
           toggleChatbot() {
             this.isChatbotOpen = !this.isChatbotOpen;
-            console.log('isChatbotOpen:', this.isChatbotOpen);
           }
         },
         template: `
           <div class="chatbot-embed-container">
             <button @click="toggleChatbot" class="chatbot-toggle-button">
-              ${'\n'}              {{ isChatbotOpen ? 'チャットを閉じる' : 'チャットを開く' }}
+              {{ isChatbotOpen ? 'チャットを閉じる' : 'チャットを開く' }}
             </button>
             <chatbot-window v-if="isChatbotOpen" class="floating-chatbot"></chatbot-window>
           </div>
@@ -186,13 +185,7 @@
       });
 
       // ChatbotWindow コンポーネントをグローバルに登録
-      console.log('ChatbotWidget:', ChatbotWidget);
-      // ChatbotWindow コンポーネントをグローバルに登録
-      // app.component('chatbot-window', ChatbotWidget);
-
-      // ChatbotWindow をカスタム要素として定義
-      const ChatbotCustomElement = Vue.defineCustomElement(ChatbotWidget);
-      customElements.define('chatbot-window', ChatbotCustomElement);
+      app.component('chatbot-window', ChatbotWidget);
 
       app.mount('#chatbot-widget-container');
     </script>

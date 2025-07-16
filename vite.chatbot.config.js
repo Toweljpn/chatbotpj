@@ -10,7 +10,7 @@ export default defineConfig({
       name: 'ChatbotWidget',
       fileName: (format) => `chatbot-widget.${format}.js`,
     },
-    outDir: 'dist/chatbot-widget', // ここを追加
+    outDir: 'chatbot-widget', // dist/ を削除 // ここを追加
     rollupOptions: {
       external: ['vue'],
       output: {

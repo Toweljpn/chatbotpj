@@ -82,7 +82,7 @@ const F = (p, r) => {
       ])
     ], 512));
   }
-}, K = /* @__PURE__ */ F(B, [["__scopeId", "data-v-aabab572"]]), q = j(K);
+}, K = /* @__PURE__ */ F(B, [["__scopeId", "data-v-3b924b6a"]]), q = j(K);
 export {
   q as default
 };
